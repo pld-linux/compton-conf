@@ -2,12 +2,12 @@
 
 Summary:	compton-conf
 Name:		compton-conf
-Version:	0.1.0
-Release:	0.1
+Version:	0.2.0
+Release:	1
 License:	GPLv2 and LGPL-2.1+
 Group:		X11/Libraries
-Source0:	http://lxqt.org/downloads/compton-conf/0.1.0/%{name}-%{version}.tar.xz
-# Source0-md5:	d50ff2a705d7c5dd1074bb187630ab98
+Source0:	http://downloads.lxqt.org/compton-conf/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	b40265ae0b2a4d40b203046c57a0c08e
 URL:		http://www.lxqt.org/
 BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -21,12 +21,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 compton-conf
 
 %prep
-%setup -q -c %{name}-%{version}
+%setup -q
 
 %build
 install -d build
 cd build
 %cmake \
+	-DPULL_TRANSLATIONS:BOOL=OFF \
 	../
 
 %{__make}
